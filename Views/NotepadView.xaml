@@ -1,0 +1,58 @@
+﻿<UserControl x:Class="Notepadcs.Views.NotepadView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Notepadcs.Views"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="auto"/>
+        </Grid.RowDefinitions>
+        
+        <DockPanel Grid.Row="0" DockPanel.Dock="Top">
+            <Menu>
+                <MenuItem Header="File">
+                    <MenuItem Header="New"/>
+                    <MenuItem Header="Open"/>
+                    <MenuItem Header="Save"/>
+                    <MenuItem Header="SaveAs"/>
+                </MenuItem>
+                
+                <MenuItem Header="Edit">
+                    <MenuItem Header="Undo"/>
+                    <MenuItem Header="Cut"/>
+                    <MenuItem Header="Copy"/>
+                    <MenuItem Header="Paste"/>
+                    <MenuItem Header="Delete"/>
+                </MenuItem>
+                
+                <MenuItem Header="Format">
+                    <MenuItem Header="Word wrap"/>
+                    <MenuItem Header="Font"/>
+                </MenuItem>
+                
+                <MenuItem Header="View">
+                    <MenuItem Header="StatusBar"/>
+                </MenuItem>
+                
+                <MenuItem Header="Help">
+                </MenuItem>
+            </Menu>
+        </DockPanel>
+        <TextBox 
+            Grid.Row="1" 
+            AcceptsReturn="True"
+            Padding="5 0 0 0"
+            TextWrapping="NoWrap"
+        />
+
+        <StatusBar 
+            Grid.Row="2"
+            Height="auto">
+        </StatusBar>
+    </Grid>
+</UserControl>
