@@ -16,10 +16,22 @@ namespace Notepadcs.ViewModels
     public class FontViewModel : ViewModelBase
     {
         private readonly FontLogic _fontLogic;
-
-        private string _fontStyle => _fontLogic.font.Style.ToString();
-        private string _fontName => _fontLogic.font.Name.ToString();
         private float _fontSize;
+        private string _fontName;
+        private string _fontStyle;
+        private string _fontWeight;
+        public string FontWeight
+        {
+            get
+            {
+                return _fontWeight;
+            }
+            set
+            {
+                _fontWeight = value;
+                OnPropertyChanged(nameof(FontWeight));
+            }
+        }
         public string FontStyle
         {
             get
@@ -28,6 +40,11 @@ namespace Notepadcs.ViewModels
             }
             set
             {
+                if (value.Substring(37) == "Bold Italic")
+                {
+                    _fontWeight = value.Substring(37, 42);
+                }
+                _fontStyle = value.Substring(37);
                 OnPropertyChanged(nameof(FontStyle));
             }
         }
@@ -52,7 +69,11 @@ namespace Notepadcs.ViewModels
             }
             set
             {
-                OnPropertyChanged(nameof(_fontSize));
+                if (value > 0)
+                {
+                    _fontSize = value;
+                    OnPropertyChanged(nameof(FontSize));
+                }       
             }
         }
 
@@ -63,6 +84,9 @@ namespace Notepadcs.ViewModels
         public FontViewModel(FontLogic fontLogic)
         {
             _fontLogic = fontLogic;
+            _fontSize = fontLogic.font.Size;
+            _fontStyle = fontLogic.font.Style.ToString();
+            _fontName = fontLogic.font.Name.ToString();
         }
     }
 }

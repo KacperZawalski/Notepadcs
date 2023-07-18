@@ -24,10 +24,10 @@
                 <RowDefinition Height="auto"/>
                 <RowDefinition Height="auto"/>
             </Grid.RowDefinitions>
-            
+
             <TextBlock Grid.Row="0" Text="Font"/>
             <TextBox Grid.Row="1" Text="{Binding FontName, UpdateSourceTrigger=PropertyChanged}" AcceptsReturn="True"/>
-            <ListBox Grid.Row="2" Name="AvailableFonts">
+            <ListBox Grid.Row="2" Name="AvailableFonts" SelectedItem="{Binding FontName, UpdateSourceTrigger=PropertyChanged}">
             </ListBox>
         </Grid>
         <Grid Grid.Column="1" Grid.Row="0" Margin="10 20 0 20">
@@ -38,7 +38,7 @@
             </Grid.RowDefinitions>
             <TextBlock Grid.Row="0" Text="Font style"/>
             <TextBox Grid.Row="1" Text="{Binding FontStyle, UpdateSourceTrigger=PropertyChanged}" AcceptsReturn="True"/>
-            <ListBox Grid.Row="2" Name="AvailableFontStyles">
+            <ListBox Grid.Row="2" Name="AvailableFontStyles" SelectedItem="{Binding FontStyle, UpdateSourceTrigger=PropertyChanged}">
                 <ListBoxItem Content="Regular"/>
                 <ListBoxItem Content="Italic" FontStyle="Italic"/>
                 <ListBoxItem Content="Bold" FontWeight="Bold"/>
@@ -53,7 +53,7 @@
             </Grid.RowDefinitions>
             <TextBlock Grid.Row="0" Text="Font size"/>
             <TextBox Grid.Row="1" Text="{Binding FontSize, UpdateSourceTrigger=PropertyChanged}" AcceptsReturn="True"/>
-            <ListBox Grid.Row="2" Name="AvailableFontSizes" SelectedItem="{Binding FontSize, UpdateSourceTrigger=PropertyChanged}" ItemsSource="{Binding FontSizes, UpdateSourceTrigger=PropertyChanged}">
+            <ListBox Grid.Row="2" Name="AvailableFontSizes" SelectedItem="{Binding FontSize, UpdateSourceTrigger=PropertyChanged}" ItemsSource="{Binding FontSizes}">
                 <ListBox.ItemContainerStyle>
                     <Style TargetType="ListBoxItem">
                         <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
@@ -68,10 +68,16 @@
             </Grid.RowDefinitions>
             <TextBlock Grid.Row="0" Text="Sample"/>
             <Border Grid.Row="1" Background="#FFF" BorderBrush="Black" BorderThickness="1">
-                <TextBlock Text="AaBbCcYyZz" TextAlignment="Center" VerticalAlignment="Center"/>
+                <TextBlock 
+                    Text="AaBbCcYyZz" 
+                    TextAlignment="Center" 
+                    VerticalAlignment="Center" 
+                    FontSize="{Binding FontSize, UpdateSourceTrigger=PropertyChanged}"
+                    FontWeight="{Binding FontStyle}"
+                    FontStyle="{Binding FontStyle}"/>
             </Border>
         </Grid>
-        
+
         <Grid Grid.Row="2" Grid.Column="1">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition/>
