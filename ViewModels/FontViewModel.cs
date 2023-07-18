@@ -3,6 +3,7 @@ using System;
 using System.CodeDom.Compiler;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Drawing;
 using System.Linq;
 using System.Security.Cryptography.Xml;
@@ -15,21 +16,20 @@ namespace Notepadcs.ViewModels
 {
     public class FontViewModel : ViewModelBase
     {
-        private readonly FontLogic _fontLogic;
         private float _fontSize;
         private string _fontName;
         private string _fontStyle;
         private string _fontWeight;
-        public string FontWeight
+        private string _fontStyling;
+        public string FontStyling
         {
-            get
-            {
-                return _fontWeight;
+            get 
+            { 
+                return _fontStyling; 
             }
-            set
-            {
-                _fontWeight = value;
-                OnPropertyChanged(nameof(FontWeight));
+            set 
+            { 
+                _fontStyling = value; 
             }
         }
         public string FontStyle
@@ -40,10 +40,6 @@ namespace Notepadcs.ViewModels
             }
             set
             {
-                if (value.Substring(37) == "Bold Italic")
-                {
-                    _fontWeight = value.Substring(37, 42);
-                }
                 _fontStyle = value.Substring(37);
                 OnPropertyChanged(nameof(FontStyle));
             }
@@ -57,6 +53,7 @@ namespace Notepadcs.ViewModels
             }
             set
             {
+                _fontName = value;
                 OnPropertyChanged(nameof(FontName));
             }
         }
@@ -83,7 +80,6 @@ namespace Notepadcs.ViewModels
         public float[] FontSizes => _fontSizes;
         public FontViewModel(FontLogic fontLogic)
         {
-            _fontLogic = fontLogic;
             _fontSize = fontLogic.font.Size;
             _fontStyle = fontLogic.font.Style.ToString();
             _fontName = fontLogic.font.Name.ToString();
