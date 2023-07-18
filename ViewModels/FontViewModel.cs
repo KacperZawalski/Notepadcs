@@ -1,18 +1,25 @@
-﻿using System;
+﻿using Notepadcs.Models;
+using System;
 using System.CodeDom.Compiler;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Drawing;
 using System.Linq;
+using System.Security.Cryptography.Xml;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using System.Windows.Media;
 
 namespace Notepadcs.ViewModels
 {
     public class FontViewModel : ViewModelBase
     {
-        private string _fontStyle;
+        private readonly FontLogic _fontLogic;
+
+        private string _fontStyle => _fontLogic.font.Style.ToString();
+        private string _fontName => _fontLogic.font.Name.ToString();
+        private float _fontSize;
         public string FontStyle
         {
             get
@@ -24,7 +31,7 @@ namespace Notepadcs.ViewModels
                 OnPropertyChanged(nameof(FontStyle));
             }
         }
-        private string _fontName;
+
         public string FontName
         {
             get
@@ -36,7 +43,7 @@ namespace Notepadcs.ViewModels
                 OnPropertyChanged(nameof(FontName));
             }
         }
-        private float _fontSize;
+        
         public float FontSize
         {
             get
@@ -45,16 +52,17 @@ namespace Notepadcs.ViewModels
             }
             set
             {
-                OnPropertyChanged(nameof(FontSize));
+                OnPropertyChanged(nameof(_fontSize));
             }
         }
+
         public ICommand OkCommand { get; }
         public ICommand CancelCommand { get; }
-        private readonly string[] _fontSizes = new string[] {"1", "2", "3" };
-        public string[] FontSizes => _fontSizes;
-        public FontViewModel()
+        private readonly float[] _fontSizes = new float[] {1, 8, 9, 20};
+        public float[] FontSizes => _fontSizes;
+        public FontViewModel(FontLogic fontLogic)
         {
-
+            _fontLogic = fontLogic;
         }
     }
 }

@@ -14,7 +14,8 @@ namespace Notepadcs.Models
 {
     public class Notepad
     {
-        public Font font = new Font(FontFamily.GenericSansSerif, 12.0F, FontStyle.Regular);
+        FontLogic fontLogic = new FontLogic();
+        
 
     }
 }
