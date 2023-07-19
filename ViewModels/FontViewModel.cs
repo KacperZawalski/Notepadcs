@@ -1,18 +1,7 @@
-﻿using Notepadcs.Models;
+﻿using Notepadcs.Commands;
+using Notepadcs.Models;
 using System;
-using System.CodeDom.Compiler;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.ComponentModel;
-using System.Drawing;
-using System.Linq;
-using System.Security.Cryptography.Xml;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
 
 namespace Notepadcs.ViewModels
 {
@@ -128,10 +117,13 @@ namespace Notepadcs.ViewModels
                 return _fontSizes;
             }
         }
-        public FontViewModel(FontLogic fontLogic)
+        public FontViewModel(FontLogic fontLogic, NotepadM notepadM)
         {
             initializeData(fontLogic);
+            OkCommand = new FontCommand(this, notepadM);
+            CancelCommand = new CancelFontCommand();
         }
+
         private string[] _fontFamilyNames;
         private FontLogic _fontLogic = new FontLogic();
         private float _fontSize;

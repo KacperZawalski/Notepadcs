@@ -3,10 +3,19 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:Notepad" xmlns:views="clr-namespace:Notepadcs.Views" xmlns:viewmodels="clr-namespace:Notepadcs.ViewModels"
+        xmlns:views="clr-namespace:Notepadcs.Views"
+        xmlns:viewModels="clr-namespace:Notepadcs.ViewModels"
         mc:Ignorable="d"
         Title="Notepad" Height="500" Width="800">
     <Grid>
+        <Grid.Resources>
+            <DataTemplate DataType="{x:Type viewModels:NotepadViewModel}">
+                <views:NotepadView/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type viewModels:FontViewModel}">
+                <views:FontView/>
+            </DataTemplate>
+        </Grid.Resources>
         <views:FontView DataContext="{Binding CurrentViewModel}"/>
     </Grid>
 </Window>

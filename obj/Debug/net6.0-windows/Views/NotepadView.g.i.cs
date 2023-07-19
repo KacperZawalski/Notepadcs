@@ -53,7 +53,7 @@ namespace Notepadcs.Views {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/Notepadcs;component/views/notepadview.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/Notepadcs;V1.0.0.0;component/views/notepadview.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\..\..\Views\NotepadView.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);
