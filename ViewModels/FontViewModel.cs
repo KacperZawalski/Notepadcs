@@ -76,10 +76,16 @@ namespace Notepadcs.ViewModels
 
         public ICommand OkCommand { get; }
         public ICommand CancelCommand { get; }
-        private readonly float[] _fontSizes = new float[] {1, 8, 9, 20};
+        private const int fontSizeListLenght = 100;
+        private readonly float[] _fontSizes;
         public float[] FontSizes => _fontSizes;
         public FontViewModel(FontLogic fontLogic)
         {
+            _fontSizes = new float[fontSizeListLenght];
+            for (int i=0; i < fontSizeListLenght; i++)
+            {
+                _fontSizes[i] = i+1;
+            }
             _fontSize = fontLogic.font.Size;
             _fontStyle = fontLogic.font.Style.ToString();
             _fontName = fontLogic.font.Name.ToString();
