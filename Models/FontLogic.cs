@@ -11,7 +11,11 @@ namespace Notepadcs.Models
     public class FontLogic
     {
         public string []FontFamilyNames;
-        private Font _font = new Font(FontFamily.GenericSansSerif, 12.0F, FontStyle.Regular);
+        public string FontName;
+        public string FontStyle;
+        public string FontWeight;
+        public float FontSize;
+        private Font _font = new Font(FontFamily.GenericSansSerif, 12.0F, System.Drawing.FontStyle.Regular);
 
         public Font Font
         {
@@ -28,7 +32,7 @@ namespace Notepadcs.Models
             }
         }
         private InstalledFontCollection installedFontCollection = new InstalledFontCollection();
-        private FontFamily[] fontFamilies;
+        public FontFamily[] fontFamilies;
         public FontLogic()
         {
             InitializeFontFamilyNames();

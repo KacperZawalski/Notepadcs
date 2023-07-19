@@ -1,4 +1,5 @@
 ﻿using Notepadcs.Models;
+using Notepadcs.Stores;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,10 +10,11 @@ namespace Notepadcs.ViewModels
 {
     internal class MainViewModel : ViewModelBase
     {
-        public ViewModelBase CurrentViewModel { get; }
-        public MainViewModel()
+        private readonly NavigationStore _navigationStore;
+        public ViewModelBase CurrentViewModel => _navigationStore.CurrentViewModel;
+        public MainViewModel(NavigationStore navigationStore)
         {
-            CurrentViewModel = new FontViewModel(new FontLogic());
+            _navigationStore = navigationStore;
         }
     }
 }
