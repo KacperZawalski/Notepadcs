@@ -38,7 +38,7 @@
             </Grid.RowDefinitions>
             <TextBlock Grid.Row="0" Text="Font style"/>
             <TextBox Grid.Row="1" Text="{Binding FontStyle, UpdateSourceTrigger=PropertyChanged}" AcceptsReturn="True"/>
-            <ListBox Grid.Row="2" Name="AvailableFontStyles" SelectedItem="{Binding FontStyle, UpdateSourceTrigger=PropertyChanged}">
+            <ListBox Grid.Row="2" Name="AvailableFontStyles" SelectedItem="{Binding FontStyling, UpdateSourceTrigger=PropertyChanged}">
                 <ListBoxItem Content="Regular"/>
                 <ListBoxItem Content="Italic" FontStyle="Italic"/>
                 <ListBoxItem Content="Bold" FontWeight="Bold"/>
@@ -74,7 +74,7 @@
                     VerticalAlignment="Center" 
                     FontSize="{Binding FontSize, UpdateSourceTrigger=PropertyChanged}"
                     FontWeight="{Binding FontWeight, UpdateSourceTrigger=PropertyChanged}"
-                    FontStyle="{Binding FontStyling, UpdateSourceTrigger=PropertyChanged}"
+                    FontStyle="{Binding FontStyle, UpdateSourceTrigger=PropertyChanged}"
                     FontFamily="{Binding FontName, UpdateSourceTrigger=PropertyChanged}"/>
             </Border>
         </Grid>

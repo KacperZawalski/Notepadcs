@@ -10,6 +10,7 @@ using System.Security.Cryptography.Xml;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 
@@ -44,7 +45,35 @@ namespace Notepadcs.ViewModels
             }
             set
             {
-                _fontStyling = value;
+                _fontStyling = value.Substring(37);
+                if (_fontStyling.Equals("Bold"))
+                {
+                    _fontStyle = "Normal";
+                    _fontWeight = "Bold";
+                    OnPropertyChanged(nameof(FontStyle));
+                    OnPropertyChanged(nameof(FontWeight));
+                }
+                else if (_fontStyling.Equals("Italic"))
+                {
+                    _fontStyle = "Italic";
+                    _fontWeight = "Regular";
+                    OnPropertyChanged(nameof(FontStyle));
+                    OnPropertyChanged(nameof(FontWeight));
+                }
+                else if (_fontStyling.Equals("Bold Italic"))
+                {
+                    _fontStyle = "Italic";
+                    _fontWeight = "Bold";
+                    OnPropertyChanged(nameof(FontStyle));
+                    OnPropertyChanged(nameof(FontWeight));
+                }
+                else
+                {
+                    _fontStyle = "Normal";
+                    _fontWeight = "Regular";
+                    OnPropertyChanged(nameof(FontStyle));
+                    OnPropertyChanged(nameof(FontWeight));
+                }
                 OnPropertyChanged(nameof(FontStyling));
             }
         }
@@ -113,7 +142,7 @@ namespace Notepadcs.ViewModels
         private const int fontSizeListLenght = 100;
         private float[] _fontSizes;
 
-        public void initializeData(FontLogic fontLogic)
+        private void initializeData(FontLogic fontLogic)
         {
             _fontSizes = new float[fontSizeListLenght];
             for (int i = 0; i < fontSizeListLenght; i++)
@@ -126,6 +155,11 @@ namespace Notepadcs.ViewModels
             _fontWeight = _fontLogic.Font.Style.ToString();
             _fontFamilyNames = new string[fontLogic.FontFamilyNames.Length];
             Array.Copy(_fontLogic.FontFamilyNames, FontFamilyNames, _fontLogic.FontFamilyNames.Length);
+        }
+
+        private void choseFontStyling()
+        {
+
         }
     }
 }
