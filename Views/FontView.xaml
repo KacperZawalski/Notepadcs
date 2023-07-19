@@ -27,7 +27,7 @@
 
             <TextBlock Grid.Row="0" Text="Font"/>
             <TextBox Grid.Row="1" Text="{Binding FontName, UpdateSourceTrigger=PropertyChanged}" AcceptsReturn="True"/>
-            <ListBox Grid.Row="2" Name="AvailableFonts" SelectedItem="{Binding FontName, UpdateSourceTrigger=PropertyChanged}" Height="170" ItemsSource="{Binding FontNames}">
+            <ListBox Grid.Row="2" Name="AvailableFonts" SelectedItem="{Binding FontName, UpdateSourceTrigger=PropertyChanged}" Height="170" ItemsSource="{Binding FontFamilyNames}">
             </ListBox>
         </Grid>
         <Grid Grid.Column="1" Grid.Row="0" Margin="10 20 0 20">
@@ -73,8 +73,9 @@
                     TextAlignment="Center" 
                     VerticalAlignment="Center" 
                     FontSize="{Binding FontSize, UpdateSourceTrigger=PropertyChanged}"
-                    FontWeight="{Binding FontWeight}"
-                    FontStyle="{Binding FontStyling}"/>
+                    FontWeight="{Binding FontWeight, UpdateSourceTrigger=PropertyChanged}"
+                    FontStyle="{Binding FontStyling, UpdateSourceTrigger=PropertyChanged}"
+                    FontFamily="{Binding FontName, UpdateSourceTrigger=PropertyChanged}"/>
             </Border>
         </Grid>
 

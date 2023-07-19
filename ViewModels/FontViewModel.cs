@@ -9,6 +9,7 @@ using System.Linq;
 using System.Security.Cryptography.Xml;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Input;
 using System.Windows.Media;
 
@@ -16,20 +17,23 @@ namespace Notepadcs.ViewModels
 {
     public class FontViewModel : ViewModelBase
     {
-        private float _fontSize;
-        private string _fontName;
-        private string _fontStyle;
-        private string _fontWeight;
-        private string _fontStyling;
+        public string FontWeight;
+        public string[] FontFamilyNames
+        {
+            get
+            {
+                return _fontFamilyNames;
+            }
+        }
         public string FontStyling
         {
-            get 
-            { 
-                return _fontStyling; 
+            get
+            {
+                return _fontStyling;
             }
-            set 
-            { 
-                _fontStyling = value; 
+            set
+            {
+                _fontStyling = value;
             }
         }
         public string FontStyle
@@ -57,7 +61,7 @@ namespace Notepadcs.ViewModels
                 OnPropertyChanged(nameof(FontName));
             }
         }
-        
+
         public float FontSize
         {
             get
@@ -70,25 +74,46 @@ namespace Notepadcs.ViewModels
                 {
                     _fontSize = value;
                     OnPropertyChanged(nameof(FontSize));
-                }       
+                }
             }
         }
 
         public ICommand OkCommand { get; }
         public ICommand CancelCommand { get; }
-        private const int fontSizeListLenght = 100;
-        private readonly float[] _fontSizes;
-        public float[] FontSizes => _fontSizes;
+        public float[] FontSizes
+        {
+            get
+            {
+                return _fontSizes;
+            }
+        }
         public FontViewModel(FontLogic fontLogic)
         {
+            initializeData(fontLogic);
+        }
+        private string[] _fontFamilyNames;
+        private FontLogic _fontLogic = new FontLogic();
+        private float _fontSize;
+        private string _fontName;
+        private string _fontStyle;
+        private string _fontWeight;
+        private string _fontStyling;
+        private const int fontSizeListLenght = 100;
+        private float[] _fontSizes;
+
+        public void initializeData(FontLogic fontLogic)
+        {
             _fontSizes = new float[fontSizeListLenght];
-            for (int i=0; i < fontSizeListLenght; i++)
+            for (int i = 0; i < fontSizeListLenght; i++)
             {
-                _fontSizes[i] = i+1;
+                _fontSizes[i] = i + 1;
             }
-            _fontSize = fontLogic.font.Size;
-            _fontStyle = fontLogic.font.Style.ToString();
-            _fontName = fontLogic.font.Name.ToString();
+            _fontSize = _fontLogic.Font.Size;
+            _fontStyle = _fontLogic.Font.Style.ToString();
+            _fontName = _fontLogic.Font.Name.ToString();
+            _fontWeight = _fontLogic.Font.Style.ToString();
+            _fontFamilyNames = new string[fontLogic.FontFamilyNames.Length];
+            Array.Copy(_fontLogic.FontFamilyNames, FontFamilyNames, _fontLogic.FontFamilyNames.Length);
         }
     }
 }
