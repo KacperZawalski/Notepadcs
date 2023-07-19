@@ -17,7 +17,18 @@ namespace Notepadcs.ViewModels
 {
     public class FontViewModel : ViewModelBase
     {
-        public string FontWeight;
+        public string FontWeight
+        {
+            get
+            {
+                return _fontWeight;
+            }
+            set
+            {
+                _fontWeight = value;
+                OnPropertyChanged(nameof(FontWeight));
+            }
+        }
         public string[] FontFamilyNames
         {
             get
@@ -34,6 +45,7 @@ namespace Notepadcs.ViewModels
             set
             {
                 _fontStyling = value;
+                OnPropertyChanged(nameof(FontStyling));
             }
         }
         public string FontStyle
