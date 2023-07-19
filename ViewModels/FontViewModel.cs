@@ -156,10 +156,5 @@ namespace Notepadcs.ViewModels
             _fontFamilyNames = new string[fontLogic.FontFamilyNames.Length];
             Array.Copy(_fontLogic.FontFamilyNames, FontFamilyNames, _fontLogic.FontFamilyNames.Length);
         }
-
-        private void choseFontStyling()
-        {
-
-        }
     }
 }
