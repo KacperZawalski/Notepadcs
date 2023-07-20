@@ -117,15 +117,16 @@ namespace Notepadcs.ViewModels
                 return _fontSizes;
             }
         }
-        public FontViewModel(FontLogic fontLogic, NotepadM notepadM, NavigationStore navigationStore)
+        public FontViewModel(NotepadM notepadM, NavigationStore navigationStore)
         {
-            initializeData(fontLogic);
+            _notepadM = notepadM;
+            initializeData();
             OkCommand = new FontCommand(this, notepadM, navigationStore);
             CancelCommand = new CancelFontCommand();
         }
 
+        private NotepadM _notepadM;
         private string[] _fontFamilyNames;
-        private FontLogic _fontLogic = new FontLogic();
         private float _fontSize;
         private string _fontName;
         private string _fontStyle;
@@ -134,20 +135,20 @@ namespace Notepadcs.ViewModels
         private const int fontSizeListLenght = 100;
         private float[] _fontSizes;
 
-        private void initializeData(FontLogic fontLogic)
+        private void initializeData()
         {
             _fontSizes = new float[fontSizeListLenght];
             for (int i = 0; i < fontSizeListLenght; i++)
             {
                 _fontSizes[i] = i + 1;
             }
-            _fontStyling = "Normal";
-            _fontSize = _fontLogic.Font.Size;
-            _fontStyle = (_fontLogic.Font.Style.ToString().Equals("Regular") ? "Normal" : _fontLogic.Font.Style.ToString());
-            _fontName = _fontLogic.Font.Name.ToString();
-            _fontWeight = _fontLogic.Font.Style.ToString();
-            _fontFamilyNames = new string[fontLogic.FontFamilyNames.Length];
-            Array.Copy(_fontLogic.FontFamilyNames, FontFamilyNames, _fontLogic.FontFamilyNames.Length);
+            _fontStyling = _notepadM.fontLogic.FontWeight + " " + _notepadM.fontLogic.FontStyle;
+            _fontSize = _notepadM.fontLogic.FontSize;
+            _fontStyle = (_notepadM.fontLogic.FontStyle.Equals("Regular") ? "Normal" : _notepadM.fontLogic.FontStyle);
+            _fontName = _notepadM.fontLogic.FontName;
+            _fontWeight = _notepadM.fontLogic.FontWeight;
+            _fontFamilyNames = new string[_notepadM.fontLogic.FontFamilyNames.Length];
+            Array.Copy(_notepadM.fontLogic.FontFamilyNames, FontFamilyNames, _notepadM.fontLogic.FontFamilyNames.Length);
         }
     }
 }

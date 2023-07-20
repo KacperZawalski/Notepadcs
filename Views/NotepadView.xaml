@@ -49,6 +49,10 @@
             AcceptsReturn="True"
             Padding="5 0 0 0"
             TextWrapping="NoWrap"
+            FontSize="{Binding FontSize}"
+            FontWeight="{Binding FontWeight}"
+            FontFamily="{Binding FontName}"
+            FontStyle="{Binding FontStyle}"
             Text="{Binding Text, UpdateSourceTrigger=PropertyChanged}"
         />
 

@@ -20,7 +20,7 @@ namespace Notepadcs.Commands
         }
         public override void Execute(object? parameter)
         {
-            _navigationStore.CurrentViewModel = new FontViewModel(_notepadM.fontLogic, _notepadM, _navigationStore);
+            _navigationStore.CurrentViewModel = new FontViewModel(_notepadM, _navigationStore);
         }
     }
 }

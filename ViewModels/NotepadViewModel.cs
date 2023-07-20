@@ -20,12 +20,24 @@ namespace Notepadcs.ViewModels
             {
                 return _fontSize;
             }
+            set
+            {
+                _fontSize = value;
+                _notepadM.fontLogic.FontSize = value;
+                OnPropertyChanged(nameof(FontSize));
+            }
         }
         public string FontWeight
         {
             get
             {
                 return _fontWeight;
+            }
+            set
+            {
+                _fontWeight = value;
+                _notepadM.fontLogic.FontWeight = value;
+                OnPropertyChanged(nameof(FontWeight));
             }
         }
         public string FontStyle
@@ -34,12 +46,24 @@ namespace Notepadcs.ViewModels
             {
                 return _fontStyle;
             }
+            set
+            {
+                _fontStyle = value;
+                _notepadM.fontLogic.FontStyle = value;
+                OnPropertyChanged(nameof(FontStyle));
+            }
         }
         public string FontName
         {
             get
             {
                 return _fontName;
+            }
+            set
+            {
+                _fontName = value;
+                _notepadM.fontLogic.FontName = value;
+                OnPropertyChanged(nameof(FontName));
             }
         }
         public string Text
@@ -60,13 +84,18 @@ namespace Notepadcs.ViewModels
         {
             _notepadM = notepadM;
             _text = notepadM.Text;
+            _fontSize = notepadM.fontLogic.FontSize;
+            _fontName = notepadM.fontLogic.FontName;
+            _fontStyle = notepadM.fontLogic.FontStyle;
+            _fontWeight = notepadM.fontLogic.FontWeight;
+
             ToFontCommand = new NotepadToFontCommand(navigationStore, notepadM);
         }
         private NotepadM _notepadM;
-        private float _fontSize => _notepadM.fontLogic.FontSize;
-        private string _fontName => _notepadM.fontLogic.FontName;
-        private string _fontStyle => _notepadM.fontLogic.FontStyle;
-        private string _fontWeight => _notepadM.fontLogic.FontWeight;
+        private float _fontSize;
+        private string _fontName;
+        private string _fontStyle;
+        private string _fontWeight;
         private string _text;
 
     }

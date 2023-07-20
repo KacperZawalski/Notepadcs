@@ -5,37 +5,24 @@ using System.Drawing.Text;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace Notepadcs.Models
 {
     public class FontLogic
     {
-        public string []FontFamilyNames;
+        public string[] FontFamilyNames;
         public string FontName;
         public string FontStyle;
         public string FontWeight;
         public float FontSize;
-        private Font _font = new Font(FontFamily.GenericSansSerif, 12.0F, System.Drawing.FontStyle.Regular);
 
-        public Font Font
-        {
-            get 
-            { 
-                return _font; 
-            }
-            set 
-            {
-                if (value.Size > 0)
-                {
-                    _font = value;
-                }
-            }
-        }
         private InstalledFontCollection installedFontCollection = new InstalledFontCollection();
         public FontFamily[] fontFamilies;
         public FontLogic()
         {
             InitializeFontFamilyNames();
+            InitializeFontData();
         }
         private void InitializeFontFamilyNames()
         {
@@ -46,7 +33,16 @@ namespace Notepadcs.Models
                 FontFamilyNames[i] = fontFamilies[i].Name;
             }
         }
-
+        private void InitializeFontData()
+        {
+            FontName = FontFamilyNames[0];
+            FontStyle = FontStyles.Normal.ToString();
+            FontWeight = FontStyles.Normal.ToString();
+            FontSize = 16;
+        }
 
     }
+
+
 }
+
