@@ -42,6 +42,18 @@ namespace Notepadcs.ViewModels
                 return _fontName;
             }
         }
+        public string Text
+        {
+            get
+            {
+                return _text;
+            }
+            set
+            {
+                _text = value;
+                OnPropertyChanged(nameof(Text));
+            }
+        }
 
         public NotepadViewModel(NavigationStore navigationStore, NotepadM notepadM)
         {
@@ -53,5 +65,7 @@ namespace Notepadcs.ViewModels
         private string _fontName => _fontLogic.FontName;
         private string _fontStyle => _fontLogic.FontStyle;
         private string _fontWeight => _fontLogic.FontWeight;
+        private string _text;
+
     }
 }
