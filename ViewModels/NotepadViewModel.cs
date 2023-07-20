@@ -51,20 +51,22 @@ namespace Notepadcs.ViewModels
             set
             {
                 _text = value;
+                _notepadM.Text = value;
                 OnPropertyChanged(nameof(Text));
             }
         }
 
         public NotepadViewModel(NavigationStore navigationStore, NotepadM notepadM)
         {
+            _notepadM = notepadM;
+            _text = notepadM.Text;
             ToFontCommand = new NotepadToFontCommand(navigationStore, notepadM);
         }
-
-        private FontLogic _fontLogic = new FontLogic();
-        private float _fontSize => _fontLogic.FontSize;
-        private string _fontName => _fontLogic.FontName;
-        private string _fontStyle => _fontLogic.FontStyle;
-        private string _fontWeight => _fontLogic.FontWeight;
+        private NotepadM _notepadM;
+        private float _fontSize => _notepadM.fontLogic.FontSize;
+        private string _fontName => _notepadM.fontLogic.FontName;
+        private string _fontStyle => _notepadM.fontLogic.FontStyle;
+        private string _fontWeight => _notepadM.fontLogic.FontWeight;
         private string _text;
 
     }

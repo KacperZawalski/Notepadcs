@@ -13,7 +13,7 @@ namespace Notepadcs.Models
     {
         private string FilePath;
         public string FileContent { get; set; }
-        FileLogic ()
+        public FileLogic ()
         {
             FilePath = "";
             FileContent = "";
