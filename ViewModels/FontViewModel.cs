@@ -1,5 +1,6 @@
 ﻿using Notepadcs.Commands;
 using Notepadcs.Models;
+using Notepadcs.Stores;
 using System;
 using System.Windows.Input;
 
@@ -7,6 +8,8 @@ namespace Notepadcs.ViewModels
 {
     public class FontViewModel : ViewModelBase
     {
+        public ICommand OkCommand { get; }
+        public ICommand CancelCommand { get; }
         public string FontWeight
         {
             get
@@ -107,9 +110,6 @@ namespace Notepadcs.ViewModels
                 }
             }
         }
-
-        public ICommand OkCommand { get; }
-        public ICommand CancelCommand { get; }
         public float[] FontSizes
         {
             get
@@ -117,10 +117,10 @@ namespace Notepadcs.ViewModels
                 return _fontSizes;
             }
         }
-        public FontViewModel(FontLogic fontLogic, NotepadM notepadM)
+        public FontViewModel(FontLogic fontLogic, NotepadM notepadM, NavigationStore navigationStore)
         {
             initializeData(fontLogic);
-            OkCommand = new FontCommand(this, notepadM);
+            OkCommand = new FontCommand(this, notepadM, navigationStore);
             CancelCommand = new CancelFontCommand();
         }
 

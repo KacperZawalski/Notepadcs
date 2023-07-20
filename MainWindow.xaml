@@ -4,7 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:views="clr-namespace:Notepadcs.Views"
-        xmlns:viewModels="clr-namespace:Notepadcs.ViewModels"
+        xmlns:viewModels="clr-namespace:Notepadcs.ViewModels" d:DataContext="{d:DesignInstance Type=viewModels:MainViewModel}"
         mc:Ignorable="d"
         Title="Notepad" Height="500" Width="800">
     <Grid>
@@ -16,6 +16,7 @@
                 <views:FontView/>
             </DataTemplate>
         </Grid.Resources>
-        <views:FontView DataContext="{Binding CurrentViewModel}"/>
+        <ContentControl Content="{Binding CurrentViewModel}"/>
+
     </Grid>
 </Window>

@@ -14,13 +14,13 @@ namespace Notepad
         private readonly NotepadM _notepadM;
         public App()
         {
-            _navigationStore = new NavigationStore();
             _notepadM = new NotepadM();
+            _navigationStore = new NavigationStore();
         }
 
         protected override void OnStartup(StartupEventArgs e)
         {
-            _navigationStore.CurrentViewModel = new NotepadViewModel();
+            _navigationStore.CurrentViewModel = new NotepadViewModel(_navigationStore, _notepadM);
             MainWindow = new MainWindow()
             {
                 DataContext = new MainViewModel(_navigationStore)

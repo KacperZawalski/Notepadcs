@@ -32,7 +32,7 @@
                 
                 <MenuItem Header="Format">
                     <MenuItem Header="Word wrap"/>
-                    <MenuItem Header="Font"/>
+                    <MenuItem Header="Font" Command="{Binding ToFontCommand}"/>
                 </MenuItem>
                 
                 <MenuItem Header="View">
