@@ -141,8 +141,9 @@ namespace Notepadcs.ViewModels
             {
                 _fontSizes[i] = i + 1;
             }
+            _fontStyling = "Normal";
             _fontSize = _fontLogic.Font.Size;
-            _fontStyle = _fontLogic.Font.Style.ToString();
+            _fontStyle = (_fontLogic.Font.Style.ToString().Equals("Regular") ? "Normal" : _fontLogic.Font.Style.ToString());
             _fontName = _fontLogic.Font.Name.ToString();
             _fontWeight = _fontLogic.Font.Style.ToString();
             _fontFamilyNames = new string[fontLogic.FontFamilyNames.Length];
