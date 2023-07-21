@@ -18,8 +18,8 @@
                 <MenuItem Header="File">
                     <MenuItem Header="New"/>
                     <MenuItem Header="Open"/>
-                    <MenuItem Header="Save"/>
-                    <MenuItem Header="SaveAs"/>
+                    <MenuItem Header="Save" Command="{Binding SaveFileCommand}"/>
+                    <MenuItem Header="SaveAs" Command="{Binding SaveFileAsCommand}"/>
                 </MenuItem>
                 
                 <MenuItem Header="Edit">

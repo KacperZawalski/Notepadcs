@@ -19,6 +19,7 @@ namespace Notepadcs.Models
         public FileLogic fileLogic;
         public NotepadM()
         {
+            Text = "";
             fontLogic = new FontLogic();
             fileLogic = new FileLogic();
         }
