@@ -71,5 +71,9 @@ namespace Notepadcs.Models
                 MessageBox.Show("Couldn't save the file");
             }
         }
+        public void ResetFilePath()
+        {
+            FilePath = "";
+        }
     }
 }
