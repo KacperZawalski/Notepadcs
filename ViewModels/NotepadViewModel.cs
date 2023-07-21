@@ -83,7 +83,38 @@ namespace Notepadcs.ViewModels
                 OnPropertyChanged(nameof(Text));
             }
         }
-
+        public string WordWrap
+        {
+            get
+            {
+                if (WordWrapBool)
+                {
+                    return "Wrap";
+                }
+                else
+                {
+                    return "NoWrap";
+                }
+            }
+            set
+            {
+                _wordWrap = value;
+                OnPropertyChanged(nameof(WordWrap));
+            }
+        }
+        public bool WordWrapBool
+        {
+            get
+            {
+                return _wordWrapBool;
+            }
+            set
+            {
+                _wordWrapBool = value;
+                OnPropertyChanged(nameof(WordWrapBool));
+                OnPropertyChanged(nameof(WordWrap));
+            }
+        }
         public NotepadViewModel(NavigationStore navigationStore, NotepadM notepadM)
         {
             _notepadM = notepadM;
@@ -105,6 +136,7 @@ namespace Notepadcs.ViewModels
         private string _fontStyle;
         private string _fontWeight;
         private string _text;
-
+        private string _wordWrap;
+        private bool _wordWrapBool;
     }
 }
