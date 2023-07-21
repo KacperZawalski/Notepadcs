@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Notepadcs.Commands
 {
-    internal class SaveAsCommand
+    public class SaveAsCommand
     {
     }
 }

@@ -14,6 +14,7 @@ namespace Notepadcs.ViewModels
     public class NotepadViewModel : ViewModelBase
     {
         public ICommand ToFontCommand { get; }
+        public ICommand SaveFileAsCommand { get; }
         public float FontSize
         {
             get
@@ -90,6 +91,7 @@ namespace Notepadcs.ViewModels
             _fontWeight = notepadM.fontLogic.FontWeight;
 
             ToFontCommand = new NotepadToFontCommand(navigationStore, notepadM);
+            SaveFileAsCommand = new SaveAsCommand(navigationStore);
         }
         private NotepadM _notepadM;
         private float _fontSize;
