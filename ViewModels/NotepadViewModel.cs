@@ -16,6 +16,7 @@ namespace Notepadcs.ViewModels
         public ICommand ToFontCommand { get; }
         public ICommand SaveFileAsCommand { get; }
         public ICommand SaveFileCommand { get; }
+        public ICommand OpenFileCommand { get; }
         public float FontSize
         {
             get
@@ -94,6 +95,7 @@ namespace Notepadcs.ViewModels
             ToFontCommand = new NotepadToFontCommand(navigationStore, notepadM);
             SaveFileAsCommand = new SaveAsCommand(notepadM);
             SaveFileCommand = new SaveCommand(notepadM);
+            OpenFileCommand = new OpenCommand(notepadM, this);
         }
         private NotepadM _notepadM;
         private float _fontSize;
