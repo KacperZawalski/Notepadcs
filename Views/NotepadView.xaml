@@ -16,10 +16,10 @@
         <DockPanel Grid.Row="0" DockPanel.Dock="Top">
             <Menu>
                 <MenuItem Header="File">
-                    <MenuItem Header="New"/>
-                    <MenuItem Header="Open"/>
-                    <MenuItem Header="Save"/>
-                    <MenuItem Header="SaveAs"/>
+                    <MenuItem Header="New" Command="{Binding NewFileCommand}"/>
+                    <MenuItem Header="Open" Command="{Binding OpenFileCommand}"/>
+                    <MenuItem Header="Save" Command="{Binding SaveFileCommand}"/>
+                    <MenuItem Header="SaveAs" Command="{Binding SaveFileAsCommand}"/>
                 </MenuItem>
                 
                 <MenuItem Header="Edit">
@@ -31,7 +31,7 @@
                 </MenuItem>
                 
                 <MenuItem Header="Format">
-                    <MenuItem Header="Word wrap"/>
+                    <MenuItem Name="WordWrapMenuItem"  Header="Word wrap" IsCheckable="True" IsChecked="{Binding WordWrapBool}"/>
                     <MenuItem Header="Font" Command="{Binding ToFontCommand}"/>
                 </MenuItem>
                 
@@ -47,8 +47,8 @@
             Name="NotepadPage"
             Grid.Row="1" 
             AcceptsReturn="True"
-            Padding="5 0 0 0"
-            TextWrapping="NoWrap"
+            Padding="5 5 0 0"
+            TextWrapping="{Binding WordWrap, UpdateSourceTrigger=PropertyChanged}"
             FontSize="{Binding FontSize}"
             FontWeight="{Binding FontWeight}"
             FontFamily="{Binding FontName}"
@@ -58,7 +58,7 @@
 
         <StatusBar 
             Grid.Row="2"
-            Height="auto">
-        </StatusBar>
+            Height="auto"
+        />
     </Grid>
 </UserControl>

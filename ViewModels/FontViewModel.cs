@@ -122,7 +122,7 @@ namespace Notepadcs.ViewModels
             _notepadM = notepadM;
             initializeData();
             OkCommand = new FontCommand(this, notepadM, navigationStore);
-            CancelCommand = new CancelFontCommand();
+            CancelCommand = new CancelFontCommand(navigationStore, notepadM);
         }
 
         private NotepadM _notepadM;

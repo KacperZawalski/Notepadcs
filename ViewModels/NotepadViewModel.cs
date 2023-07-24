@@ -15,6 +15,9 @@ namespace Notepadcs.ViewModels
     {
         public ICommand ToFontCommand { get; }
         public ICommand SaveFileAsCommand { get; }
+        public ICommand SaveFileCommand { get; }
+        public ICommand OpenFileCommand { get; }
+        public ICommand NewFileCommand { get; }
         public float FontSize
         {
             get
@@ -80,7 +83,38 @@ namespace Notepadcs.ViewModels
                 OnPropertyChanged(nameof(Text));
             }
         }
-
+        public string WordWrap
+        {
+            get
+            {
+                if (WordWrapBool)
+                {
+                    return "Wrap";
+                }
+                else
+                {
+                    return "NoWrap";
+                }
+            }
+            set
+            {
+                _wordWrap = value;
+                OnPropertyChanged(nameof(WordWrap));
+            }
+        }
+        public bool WordWrapBool
+        {
+            get
+            {
+                return _wordWrapBool;
+            }
+            set
+            {
+                _wordWrapBool = value;
+                OnPropertyChanged(nameof(WordWrapBool));
+                OnPropertyChanged(nameof(WordWrap));
+            }
+        }
         public NotepadViewModel(NavigationStore navigationStore, NotepadM notepadM)
         {
             _notepadM = notepadM;
@@ -91,7 +125,10 @@ namespace Notepadcs.ViewModels
             _fontWeight = notepadM.fontLogic.FontWeight;
 
             ToFontCommand = new NotepadToFontCommand(navigationStore, notepadM);
-            SaveFileAsCommand = new SaveAsCommand(navigationStore);
+            SaveFileAsCommand = new SaveAsCommand(notepadM);
+            SaveFileCommand = new SaveCommand(notepadM);
+            OpenFileCommand = new OpenCommand(notepadM, this);
+            NewFileCommand = new NewCommand(notepadM, this);
         }
         private NotepadM _notepadM;
         private float _fontSize;
@@ -99,6 +136,7 @@ namespace Notepadcs.ViewModels
         private string _fontStyle;
         private string _fontWeight;
         private string _text;
-
+        private string _wordWrap;
+        private bool _wordWrapBool;
     }
 }
