@@ -17,12 +17,10 @@ namespace Notepadcs.ViewModels
     {
         public ICommand ToFontCommand { get; }
         public ICommand SaveFileAsCommand { get; }
-<<<<<<< HEAD
-=======
+
         public ICommand SaveFileCommand { get; }
         public ICommand OpenFileCommand { get; }
         public ICommand NewFileCommand { get; }
->>>>>>> 4958a0f9ea6b931791cf0ab855b36d6cf70a67df
         public float FontSize
         {
             get
@@ -131,14 +129,10 @@ namespace Notepadcs.ViewModels
             _wordWrap = "Wrap";
 
             ToFontCommand = new NotepadToFontCommand(navigationStore, notepadM);
-<<<<<<< HEAD
-            SaveFileAsCommand = new SaveAsCommand(navigationStore);
-=======
             SaveFileAsCommand = new SaveAsCommand(notepadM);
             SaveFileCommand = new SaveCommand(notepadM);
             OpenFileCommand = new OpenCommand(notepadM, this);
             NewFileCommand = new NewCommand(notepadM, this);
->>>>>>> 4958a0f9ea6b931791cf0ab855b36d6cf70a67df
         }
         private NotepadM _notepadM;
         private float _fontSize;
