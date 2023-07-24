@@ -6,6 +6,12 @@
              xmlns:local="clr-namespace:Notepadcs.Views" xmlns:viewmodels="clr-namespace:Notepadcs.ViewModels" d:DataContext="{d:DesignInstance Type=viewmodels:NotepadViewModel}"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
+    <UserControl.InputBindings>
+        <KeyBinding Key="S" Modifiers="Ctrl" Command="{Binding SaveFileCommand}"/>
+        <KeyBinding Key="S" Modifiers="Ctrl+Shift" Command="{Binding SaveFileAsCommand}"/>
+        <KeyBinding Key="O" Modifiers="Ctrl" Command="{Binding OpenFileCommand}"/>
+        <KeyBinding Key="N" Modifiers="Ctrl" Command="{Binding NewFileCommand}"/>
+    </UserControl.InputBindings>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"/>
@@ -16,22 +22,23 @@
         <DockPanel Grid.Row="0" DockPanel.Dock="Top">
             <Menu>
                 <MenuItem Header="File">
-                    <MenuItem Header="New"/>
-                    <MenuItem Header="Open"/>
-                    <MenuItem Header="Save"/>
-                    <MenuItem Header="SaveAs"/>
+                    <MenuItem Header="New" Command="{Binding NewFileCommand}"/>
+                    <MenuItem Header="Open" Command="{Binding OpenFileCommand}"/>
+                    <MenuItem Header="Save" Command="{Binding SaveFileCommand}"/>
+                    <MenuItem Header="SaveAs" Command="{Binding SaveFileAsCommand}"/>
                 </MenuItem>
                 
                 <MenuItem Header="Edit">
-                    <MenuItem Header="Undo"/>
-                    <MenuItem Header="Cut"/>
-                    <MenuItem Header="Copy"/>
-                    <MenuItem Header="Paste"/>
-                    <MenuItem Header="Delete"/>
+                    <MenuItem Header="Undo" Command="ApplicationCommands.Undo"/>
+                    <MenuItem Header="Redo" Command="ApplicationCommands.Redo"/>
+                    <MenuItem Header="Cut" Command="ApplicationCommands.Cut"/>
+                    <MenuItem Header="Copy" Command="ApplicationCommands.Copy"/>
+                    <MenuItem Header="Paste" Command="ApplicationCommands.Paste"/>
+                    <MenuItem Header="Delete" Command="ApplicationCommands.Delete"/>
                 </MenuItem>
                 
                 <MenuItem Header="Format">
-                    <MenuItem Header="Word wrap"/>
+                    <MenuItem Name="WordWrapMenuItem"  Header="Word wrap" IsCheckable="True" IsChecked="{Binding WordWrapBool}"/>
                     <MenuItem Header="Font" Command="{Binding ToFontCommand}"/>
                 </MenuItem>
                 
@@ -47,8 +54,8 @@
             Name="NotepadPage"
             Grid.Row="1" 
             AcceptsReturn="True"
-            Padding="5 0 0 0"
-            TextWrapping="NoWrap"
+            Padding="5 5 0 0"
+            TextWrapping="{Binding WordWrap, UpdateSourceTrigger=PropertyChanged}"
             FontSize="{Binding FontSize}"
             FontWeight="{Binding FontWeight}"
             FontFamily="{Binding FontName}"
@@ -58,7 +65,7 @@
 
         <StatusBar 
             Grid.Row="2"
-            Height="auto">
-        </StatusBar>
+            Height="auto"
+        />
     </Grid>
 </UserControl>

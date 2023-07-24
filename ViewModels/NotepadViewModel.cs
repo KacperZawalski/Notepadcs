@@ -1,12 +1,14 @@
 ﻿using Notepadcs.Commands;
 using Notepadcs.Models;
 using Notepadcs.Stores;
+using Notepadcs.Views;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Input;
 
 namespace Notepadcs.ViewModels
@@ -15,6 +17,12 @@ namespace Notepadcs.ViewModels
     {
         public ICommand ToFontCommand { get; }
         public ICommand SaveFileAsCommand { get; }
+<<<<<<< HEAD
+=======
+        public ICommand SaveFileCommand { get; }
+        public ICommand OpenFileCommand { get; }
+        public ICommand NewFileCommand { get; }
+>>>>>>> 4958a0f9ea6b931791cf0ab855b36d6cf70a67df
         public float FontSize
         {
             get
@@ -80,7 +88,38 @@ namespace Notepadcs.ViewModels
                 OnPropertyChanged(nameof(Text));
             }
         }
-
+        public string WordWrap
+        {
+            get
+            {
+                if (WordWrapBool)
+                {
+                    return "Wrap";
+                }
+                else
+                {
+                    return "NoWrap";
+                }
+            }
+            set
+            {
+                _wordWrap = value;
+                OnPropertyChanged(nameof(WordWrap));
+            }
+        }
+        public bool WordWrapBool
+        {
+            get
+            {
+                return _wordWrapBool;
+            }
+            set
+            {
+                _wordWrapBool = value;
+                OnPropertyChanged(nameof(WordWrapBool));
+                OnPropertyChanged(nameof(WordWrap));
+            }
+        }
         public NotepadViewModel(NavigationStore navigationStore, NotepadM notepadM)
         {
             _notepadM = notepadM;
@@ -89,9 +128,17 @@ namespace Notepadcs.ViewModels
             _fontName = notepadM.fontLogic.FontName;
             _fontStyle = notepadM.fontLogic.FontStyle;
             _fontWeight = notepadM.fontLogic.FontWeight;
+            _wordWrap = "Wrap";
 
             ToFontCommand = new NotepadToFontCommand(navigationStore, notepadM);
+<<<<<<< HEAD
             SaveFileAsCommand = new SaveAsCommand(navigationStore);
+=======
+            SaveFileAsCommand = new SaveAsCommand(notepadM);
+            SaveFileCommand = new SaveCommand(notepadM);
+            OpenFileCommand = new OpenCommand(notepadM, this);
+            NewFileCommand = new NewCommand(notepadM, this);
+>>>>>>> 4958a0f9ea6b931791cf0ab855b36d6cf70a67df
         }
         private NotepadM _notepadM;
         private float _fontSize;
@@ -99,6 +146,7 @@ namespace Notepadcs.ViewModels
         private string _fontStyle;
         private string _fontWeight;
         private string _text;
-
+        private string _wordWrap;
+        private bool _wordWrapBool;
     }
 }

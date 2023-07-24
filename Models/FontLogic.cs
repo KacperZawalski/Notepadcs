@@ -35,7 +35,7 @@ namespace Notepadcs.Models
         }
         private void InitializeFontData()
         {
-            FontName = FontFamilyNames[0];
+            FontName = "Arial";
             FontStyle = FontStyles.Normal.ToString();
             FontWeight = FontStyles.Normal.ToString();
             FontSize = 16;

@@ -11,12 +11,17 @@ namespace Notepadcs.Models
 {
     public class FileLogic
     {
-        private string FilePath;
-        public string FileContent { get; set; }
+        public string FilePath
+        {
+            get
+            {
+                return filePath;
+            }
+        }
+        private string filePath;
         public FileLogic ()
         {
-            FilePath = "";
-            FileContent = "";
+            filePath = "";
         }
         public string OpenFile()
         {
@@ -30,10 +35,9 @@ namespace Notepadcs.Models
                
                 if (openFileDialog.ShowDialog() == true)
                 {
-                    FilePath = openFileDialog.FileName;
-                    FileContent = File.ReadAllText(FilePath);
+                    filePath = openFileDialog.FileName;
+                    return File.ReadAllText(filePath);
                 }
-                return FileContent;
             }
             catch
             {
@@ -41,35 +45,42 @@ namespace Notepadcs.Models
             }
             return "";
         }
-        public void SaveFile()
+        public void SaveFileAs(string FileContent)
         {
             try
             {
-                if (FilePath != "")
-                {
-                    SaveFileDialog saveFileDialog = new SaveFileDialog();
-                    saveFileDialog.InitialDirectory = "c:\\";
-                    saveFileDialog.Filter = "txt files (*.txt)|*.txt|All files (*.*)|*.*";
-                    saveFileDialog.FilterIndex = 2;
-                    saveFileDialog.RestoreDirectory = true;
-                    saveFileDialog.OverwritePrompt = true;
+                SaveFileDialog saveFileDialog = new SaveFileDialog();
+                saveFileDialog.InitialDirectory = "c:\\";
+                saveFileDialog.Filter = "txt files (*.txt)|*.txt|All files (*.*)|*.*";
+                saveFileDialog.FilterIndex = 2;
+                saveFileDialog.RestoreDirectory = true;
+                saveFileDialog.OverwritePrompt = true;
 
-                    if (saveFileDialog.ShowDialog() == true)
-                    {
-                        FilePath = saveFileDialog.FileName;
-                        File.WriteAllText(FilePath, FileContent);
-                    }
-                }
-                else
+                if (saveFileDialog.ShowDialog() == true)
                 {
-                    File.WriteAllText(FilePath, FileContent);
-                }
-                
+                    filePath = saveFileDialog.FileName;
+                    File.WriteAllText(filePath, FileContent);
+                }            
+            }
+            catch
+            {
+                MessageBox.Show("Couldn't save the file x");
+            }
+        }
+        public void SaveFile(string FileContent)
+        {
+            try
+            {
+                File.WriteAllText(filePath, FileContent);
             }
             catch
             {
                 MessageBox.Show("Couldn't save the file");
             }
+        }
+        public void ResetFilePath()
+        {
+            filePath = "";
         }
     }
 }
