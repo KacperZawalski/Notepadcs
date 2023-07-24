@@ -23,11 +23,12 @@
                 </MenuItem>
                 
                 <MenuItem Header="Edit">
-                    <MenuItem Header="Undo"/>
-                    <MenuItem Header="Cut"/>
-                    <MenuItem Header="Copy"/>
-                    <MenuItem Header="Paste"/>
-                    <MenuItem Header="Delete"/>
+                    <MenuItem Header="Undo" Command="ApplicationCommands.Undo"/>
+                    <MenuItem Header="Redo" Command="ApplicationCommands.Redo"/>
+                    <MenuItem Header="Cut" Command="ApplicationCommands.Cut"/>
+                    <MenuItem Header="Copy" Command="ApplicationCommands.Copy"/>
+                    <MenuItem Header="Paste" Command="ApplicationCommands.Paste"/>
+                    <MenuItem Header="Delete" Command="ApplicationCommands.Delete"/>
                 </MenuItem>
                 
                 <MenuItem Header="Format">
