@@ -1,12 +1,14 @@
 ﻿using Notepadcs.Commands;
 using Notepadcs.Models;
 using Notepadcs.Stores;
+using Notepadcs.Views;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Input;
 
 namespace Notepadcs.ViewModels
@@ -123,6 +125,7 @@ namespace Notepadcs.ViewModels
             _fontName = notepadM.fontLogic.FontName;
             _fontStyle = notepadM.fontLogic.FontStyle;
             _fontWeight = notepadM.fontLogic.FontWeight;
+            _wordWrap = "Wrap";
 
             ToFontCommand = new NotepadToFontCommand(navigationStore, notepadM);
             SaveFileAsCommand = new SaveAsCommand(notepadM);
