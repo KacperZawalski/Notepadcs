@@ -1,5 +1,6 @@
 ﻿using Notepadcs.Models;
 using Notepadcs.ViewModels;
+using System.Windows;
 
 namespace Notepadcs.Commands
 {
@@ -15,7 +16,6 @@ namespace Notepadcs.Commands
         public override void Execute(object? parameter)
         {
             _notepadViewModel.Text = _notepadM.Text = _notepadM.fileLogic.OpenFile();
-            
         }
     }
 }

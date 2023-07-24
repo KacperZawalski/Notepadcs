@@ -11,10 +11,17 @@ namespace Notepadcs.Models
 {
     public class FileLogic
     {
-        private string FilePath;
+        public string FilePath
+        {
+            get
+            {
+                return filePath;
+            }
+        }
+        private string filePath;
         public FileLogic ()
         {
-            FilePath = "";
+            filePath = "";
         }
         public string OpenFile()
         {
@@ -28,8 +35,8 @@ namespace Notepadcs.Models
                
                 if (openFileDialog.ShowDialog() == true)
                 {
-                    FilePath = openFileDialog.FileName;
-                    return File.ReadAllText(FilePath);
+                    filePath = openFileDialog.FileName;
+                    return File.ReadAllText(filePath);
                 }
             }
             catch
@@ -51,8 +58,8 @@ namespace Notepadcs.Models
 
                 if (saveFileDialog.ShowDialog() == true)
                 {
-                    FilePath = saveFileDialog.FileName;
-                    File.WriteAllText(FilePath, FileContent);
+                    filePath = saveFileDialog.FileName;
+                    File.WriteAllText(filePath, FileContent);
                 }            
             }
             catch
@@ -64,7 +71,7 @@ namespace Notepadcs.Models
         {
             try
             {
-                File.WriteAllText(FilePath, FileContent);
+                File.WriteAllText(filePath, FileContent);
             }
             catch
             {
@@ -73,7 +80,7 @@ namespace Notepadcs.Models
         }
         public void ResetFilePath()
         {
-            FilePath = "";
+            filePath = "";
         }
     }
 }
