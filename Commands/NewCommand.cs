@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace Notepadcs.Commands
 {
@@ -19,8 +20,26 @@ namespace Notepadcs.Commands
         }
         public override void Execute(object? parameter)
         {
-            _notepadM.fileLogic.ResetFilePath();
-            _notepadM.Text = _notepadViewModel.Text = "";
+
+            if (MessageBox.Show("Do you want to save changes before creating fresh page?", "Confirmation", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
+            {
+                if (_notepadM.fileLogic.FilePath.Equals(""))
+                {
+                    _notepadM.fileLogic.SaveFileAs(_notepadViewModel.Text);
+                }
+                else
+                {
+                    _notepadM.fileLogic.SaveFile(_notepadViewModel.Text);
+                }
+                _notepadM.fileLogic.ResetFilePath();
+                _notepadM.Text = _notepadViewModel.Text = "";
+            }
+            else
+            {
+                _notepadM.fileLogic.ResetFilePath();
+                _notepadM.Text = _notepadViewModel.Text = "";
+            }
+
         }
     }
 }
