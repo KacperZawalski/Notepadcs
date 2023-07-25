@@ -26,6 +26,8 @@
                     <MenuItem Header="Open" InputGestureText="Ctrl+O" Command="{Binding OpenFileCommand}"/>
                     <MenuItem Header="Save" InputGestureText="Ctrl+S" Command="{Binding SaveFileCommand}"/>
                     <MenuItem Header="SaveAs" InputGestureText="Ctrl+Shift+S" Command="{Binding SaveFileAsCommand}"/>
+                    <Separator/>
+                    <MenuItem Header="Exit" Command="{Binding ExitAppCommand}"/>
                 </MenuItem>
                 
                 <MenuItem Header="Edit">
